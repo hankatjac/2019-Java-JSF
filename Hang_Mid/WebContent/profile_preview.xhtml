@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en" 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://xmlns.jcp.org/jsf/html" 
+xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+ 
+
+<h:head> 
+	<title>Profile Preview</title> 
+
+</h:head> 
+
+<h:body>
+
+Previewed Registration :
+	First Name: #{model.firstName}
+	<br/><br/>
+	Last Name: #{model.lastName}
+	<br/><br/>
+	ID: #{model.id}
+	<br/><br/>
+	Address: #{model.address}
+	<br/><br/>
+	Phone Number: #{model.phoneNumber}
+	<br/><br/>
+	Email: #{model.email}
+	<br/><br/>
+	UserName: #{model.userName}
+	<br/><br/>
+	Password: #{model.passWord}
+	
+	<br/><br/>
+	
+	Pleasee Confirm: 
+	<h:form>
+		<h:selectOneMenu value="#{model.profileConfirmation}">
+			<f:selectItem itemLabel="Shopping" itemValue="shopping" />
+			<f:selectItem itemLabel="Back" itemValue="registration-form" />
+		</h:selectOneMenu>
+	
+	
+	<br/><br/>
+	
+    <h:commandButton value="Submit" action="#{model.startProfileConfirmation()}" />
+		
+	</h:form>
+</h:body>
+
+</html>

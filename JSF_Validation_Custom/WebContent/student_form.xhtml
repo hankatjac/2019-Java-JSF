@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en" 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://xmlns.jcp.org/jsf/html" 
+xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+ 
+
+
+<h:head> 
+	<title>Student Registration Form</title> 
+	<style>
+		.error{
+			color:red
+		}
+	</style>
+</h:head> 
+ 
+
+<h:body>
+	
+	<h:form>
+	<h1>Student Form</h1>
+	
+	
+	<!-- <h:messages styleClass="error" /> -->
+	
+	
+	
+  		First Name:<h:inputText value = "#{student.firstName}" label = "First Name"  />
+  		
+  		<br/><br/>
+  		
+  		<!-- id ="last name" is used in h:message -->
+  		
+  		Last Name:<h:inputText  value = "#{student.lastName}"	label = "Last Name"  id="last_name" required = "true" requiredMessage = "Your last name is mandatory" />
+  		<h:message for="last_name" styleClass ="error"></h:message>
+  		
+  		<br/><br/>
+  						
+  		Email:<h:inputText  value = "#{student.email}"	label = "Email"  id="email" required = "true" requiredMessage = "Your must give your email" />
+  		<h:message for="email" styleClass ="error"></h:message>
+  		
+  		<br/><br/>
+  		
+  		<!-- Call a method as validator -->
+  		Course Code:
+  		<h:inputText  value = "#{student.courseCode}"	label = "Course Code"  id="course_code" validator = "#{student.validateTheCourseCode}" >
+  	    </h:inputText>
+  	    
+  		<h:message for="course_code" styleClass ="error"></h:message>
+  		
+  		
+  		<br/><br/>
+  		
+  			
+  		<h:commandButton value="submit" action="student_response"/>
+	</h:form>
+	
+</h:body>
+
+</html>

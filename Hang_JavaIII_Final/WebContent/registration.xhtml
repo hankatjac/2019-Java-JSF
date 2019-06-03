@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="en" 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://xmlns.jcp.org/jsf/html" 
+xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+ 
+
+
+<h:head> 
+	<title>Registration Form</title> 
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="Content-type" content="text/html" charset="utf-8" />
+	
+	<title>Registration Form</title>
+	
+	<h:outputStylesheet library = "css" name = "style.css" />
+	<h:outputStylesheet library = "css" name = "add-style.css" />
+	
+
+</h:head> 
+ 
+
+<h:body>
+	<div id="wrapper" >
+		<div id="header"> 
+			<h2>Online Shopping</h2>
+		</div>
+	</div>
+
+	<div id="container">
+			<h3>Registration Form</h3>
+			<h:messages globalOnly="true" />
+			
+	<h:form id="form" style="margin-top:10px;">
+		<h:panelGrid columns="3">
+		
+	
+
+  		<h:outputLabel>First Name:</h:outputLabel>
+  		<h:inputText value = "#{customer.firstName}" id="first_name" >
+  			<f:validateRegex pattern="^[A-Z][a-z]+$" />	
+  		</h:inputText>
+  		<h:message for="first_name" styleClass="error" />
+  	
+  		
+  		<h:outputLabel>Last Name:</h:outputLabel>
+  		<h:inputText  value = "#{customer.lastName}" id="last_name" >
+  			<f:validateRegex pattern="^[A-Z][a-z]+$" />
+  		</h:inputText>
+  		<h:message for="last_name" styleClass="error"/>
+  		
+		<h:outputLabel>Address:</h:outputLabel>
+		<h:inputText  value = "#{customer.address}"	 id="address" >
+			<f:validateLength maximum="400" />
+		</h:inputText>
+		<h:message for="address" styleClass="error" />
+  			
+  		<h:outputLabel>Phone Number:</h:outputLabel> 
+			<h:inputText value="#{customer.phoneNumber}" 					 
+            							  id="phone_number"
+            							  validatorMessage="Phone number must follow xxx-xxx-xxxx">		
+        <f:validateRegex pattern="\d{3}-\d{3}-\d{4}" />							
+       	</h:inputText>
+       	<h:message for="phone_number" styleClass="error" />
+
+  		<h:outputLabel>Email:</h:outputLabel>
+  		<h:inputText  value = "#{customer.email}"	id="email" required="true" requiredMessage="Your email is mandatory.">
+  			<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />	
+  		</h:inputText>
+  		<h:message for="email" styleClass="error"/>	
+  		
+  		<h:outputLabel>User Name</h:outputLabel>
+		<h:inputText value="#{customer.userName}" 					 
+           							  id="user_name"
+           							  validator="#{customer.validateTheUserName}" />
+         <h:message for="user_name" styleClass="error" /> 							  
+         							  
+			
+  		<h:outputLabel>Password</h:outputLabel>
+		<h:inputText  value = "#{customer.passWord}"  id="pw" >
+			<f:validateLength minimum="8"  />
+		</h:inputText>
+		<h:message for="pw" styleClass="error" />
+  				 
+  		
+  		<h:outputLabel>Type of Car</h:outputLabel>
+	  		<h:selectOneMenu value="#{customer.typeOfCar}">
+				<f:selectItem itemValue="Small" itemLabel="Small" />
+				<f:selectItem itemValue="SUV" itemLabel="SUV" />
+				<f:selectItem itemValue="Van" itemLabel="Van" />
+			</h:selectOneMenu>	
+		 	<br/><br/> 	
+		
+		<h:outputLabel>Brand</h:outputLabel>
+	  		<h:selectOneMenu value="#{customer.brand}">
+				<f:selectItem itemValue="Toyota" itemLabel="Toyota" />
+				<f:selectItem itemValue="Ford" itemLabel="Ford" />
+				<f:selectItem itemValue="Audi" itemLabel="Audi" />
+				<f:selectItem itemValue="Jeep" itemLabel="Jeep" />
+				<f:selectItem itemValue="Honda" itemLabel="Honda" />
+			</h:selectOneMenu>	
+	
+			 	<br/><br/> 	
+		 <h:outputLabel>Start Date</h:outputLabel>
+	  		<h:inputText value="#{customer.startDate}" />
+	
+  		 	<br/><br/> 
+  		 	<h:outputLabel>Number of Days</h:outputLabel>
+	  		<h:selectOneMenu value="#{customer.numberOfDays}">
+				<f:selectItem itemValue="1" itemLabel="1" />
+				<f:selectItem itemValue="2" itemLabel="2" />
+				<f:selectItem itemValue="3" itemLabel="3" />
+				<f:selectItem itemValue="4" itemLabel="4" />
+				<f:selectItem itemValue="5" itemLabel="5" />
+				<f:selectItem itemValue="6" itemLabel="6" />
+				<f:selectItem itemValue="7" itemLabel="7" />
+				<f:selectItem itemValue="8" itemLabel="8" />
+				<f:selectItem itemValue="9" itemLabel="9" />
+				<f:selectItem itemValue="10" itemLabel="10" />
+			</h:selectOneMenu>
+			<br/><br/>
+			
+	
+  		<br/><br/>	
+  			 
+  		<h:commandButton value="Save" sytleClass="save" action="#{customerController.addCustomer(customer)}"/>
+  		
+  		</h:panelGrid>
+		</h:form>
+		
+		<div style ="clear:both;"></div>
+		<p><h:outputLink value="show_all.xhtml">Back to List</h:outputLink></p>	
+	</div>
+	
+</h:body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en" 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://xmlns.jcp.org/jsf/html" 
+xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+ 
+
+
+<h:head> 
+	<title>Registration Form</title> 
+
+	<!-- 
+		The viewport is the user's visible area of a web page. 
+		The width=device-width part sets the width of the page to 
+		follow the screen-width of the device (which will vary depending on the device).
+		The initial-scale=1.0 part sets the initial zoom level when 
+		the page is first loaded by the browser.
+	-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="Content-type" content="text/html" charset="utf-8" />
+	
+	<title>Registration Form</title>
+	
+	<h:outputStylesheet library = "css" name = "style.css" />
+	<h:outputStylesheet library = "css" name = "add-style.css" />
+	
+
+</h:head> 
+ 
+
+<h:body>
+	<div id="wrapper" >
+		<div id="header"> 
+			<h2>Online Shopping</h2>
+		</div>
+	</div>
+
+	<div id="container">
+			<h3>Registration Form</h3>
+			<h:messages globalOnly="true" />
+			
+	<h:form id="form" style="margin-top:10px;">
+		<h:panelGrid columns="3">
+
+  		<h:outputLabel>First Name:</h:outputLabel>
+  		<h:inputText value = "#{customer.firstName}" id="first_name" >
+  			<f:validateRegex pattern="^[A-Z][a-z]+$" />	
+  		</h:inputText>
+  		<h:message for="first_name" styleClass="error" />
+  	
+  		
+  		<h:outputLabel>Last Name:</h:outputLabel>
+  		<h:inputText  value = "#{customer.lastName}" id="last_name" >
+  			<f:validateRegex pattern="^[A-Z][a-z]+$" />
+  		</h:inputText>
+  		<h:message for="last_name" styleClass="error"/>
+  		
+		<h:outputLabel>Address:</h:outputLabel>
+		<h:inputText  value = "#{customer.address}"	 id="address" >
+			<f:validateLength maximum="200" />
+		</h:inputText>
+		<h:message for="address" styleClass="error" />
+  			
+  		<h:outputLabel>Phone Number:</h:outputLabel> 
+			<h:inputText value="#{customer.phoneNumber}" 					 
+            							  id="phone_number"
+            							  validatorMessage="Phone number must follow xxx-xxx-xxxx">		
+        <f:validateRegex pattern="\d{3}-\d{3}-\d{4}" />							
+       	</h:inputText>
+       	<h:message for="phone_number" styleClass="error" />
+
+  		<h:outputLabel>Email:</h:outputLabel>
+  		<h:inputText  value = "#{customer.email}"	id="email" required="true" requiredMessage="Your email is mandatory.">
+  			<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />	
+  		</h:inputText>
+  		<h:message for="email" styleClass="error"/>	
+  		
+  		<h:outputLabel>User Name</h:outputLabel>
+		<h:inputText value="#{customer.userName}" 					 
+           							  id="user_name"
+           							  validator="#{customer.validateTheUserName}" />
+         <h:message for="user_name" styleClass="error" /> 							  
+         							  
+			
+  		<h:outputLabel>Password</h:outputLabel>
+		<h:inputText  value = "#{customer.passWord}"  id="pw" >
+			<f:validateLength minimum="8"  />
+		</h:inputText>
+		<h:message for="pw" styleClass="error" />
+  				 
+  	
+  		<h:outputLabel>Favorite:</h:outputLabel>	
+  		<h:selectManyCheckbox value="#{customer.favorite}">
+			<f:selectItem itemValue="email" itemLabel="Monthly Discount Email" />
+			<f:selectItem itemValue="product" itemLabel="Weekly Update for New Products" />			
+		</h:selectManyCheckbox>
+		
+		<br/><br/>	
+  		
+ 		<h:outputLabel>Profile Selection:</h:outputLabel>		
+		<h:selectOneRadio value="#{customer.profileSelect}">
+			<f:selectItem itemValue="public" itemLabel="Public" />
+			<f:selectItem itemValue="private" itemLabel="Private" />
+		</h:selectOneRadio>	
+  		
+  		<br/><br/>	
+  		<h:commandButton value="Save" sytleClass="save" action="#{customerController.addCustomer(customer)}"/>
+  		
+  		</h:panelGrid>
+		</h:form>
+		
+		<div style ="clear:both;"></div>
+		<p><h:outputLink value="list-customers.xhtml">Back to List</h:outputLink></p>	
+	</div>
+	
+</h:body>
+
+</html>

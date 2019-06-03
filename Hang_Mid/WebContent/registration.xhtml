@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en" 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://xmlns.jcp.org/jsf/html" 
+xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+ 
+
+
+<h:head> 
+	<title>Student Registration Form</title> 
+	<style>
+		.error{
+			color:red
+		}
+	</style>
+</h:head> 
+ 
+
+<h:body>
+	
+	<h:form>
+	<h1>Registration Form</h1>
+	
+		ID:
+		<h:inputText value = "#{model.id}" label = "ID" id = "id" >
+			<f:validateLength minimum="8" maximum="8" />
+		</h:inputText>
+		<h:message for="id" styleClass="error" />
+		<br/><br/>
+	
+  		First Name:
+  		<h:inputText value = "#{model.firstName}" label = "First Name" id="first_name" >
+  			<!-- <f:validateRegex pattern="^[A-Z][a-z]+$" />	 -->
+  		</h:inputText>
+  		<h:message for="first_name" styleClass="error" />
+  		<br/><br/>
+  		
+  		Last Name:
+  		<h:inputText  value = "#{model.lastName}"	label = "Last Name"  id="last_name" >
+  		<!-- 	<f:validateRegex pattern="^[A-Z][a-z]+$" /> -->
+  		</h:inputText>
+  		<h:message for="last_name" styleClass="error" />	
+  	
+  		<br/><br/>
+  						
+  		Email:
+  		<h:inputText  value = "#{model.email}"	label = "Email"  id="email">
+  		<!-- 	<f:validateRegex pattern="/[@*\.+]/" /> -->	
+  		</h:inputText>
+  		<h:message for="email" styleClass="error" />
+  		<br/><br/>
+  		
+  		Phone number: 
+			<h:inputText value="#{model.phoneNumber}" 
+            							  label="Phone Number"						 
+            							  id="phone_number"
+            							  validatorMessage="Phone number must follow xxx-xxx-xxxx">		
+            	<f:validateRegex pattern="\d{3}-\d{3}-\d{4}" />							
+           	</h:inputText>
+           	<h:message for="phone_number" styleClass="error" />
+        <br/><br/> 
+          	 
+  		Address:
+  			<h:inputText  value = "#{model.address}"	label = "Last Name"  id="address" >
+  				<f:validateLength maximum="200" />
+  			</h:inputText>
+  			<h:message for="address" styleClass="error" />
+  		<br/><br/>
+  				  
+  		User Name: 
+			<h:inputText value="#{model.userName}" 
+            							  label="User Name"						 
+            							  id="user_name"
+            							  validator="#{model.validateTheUserName}" />
+           <h:message for="user_name" styleClass="error" /> 							  
+       <br/><br/>     							  
+			
+  		Password:
+  			<h:inputText  value = "#{model.passWord}"	label = "Password"  id="pw" >
+  				<f:validateLength minimum="8"  />
+  			</h:inputText>
+  			<h:message for="pw" styleClass="error" />
+  		<br/><br/>		  
+  		  		
+  		
+  		<h:selectManyCheckbox value="#{model.favorite}">
+			<f:selectItem itemValue="email" itemLabel="Monthly Discount Email" />
+			<f:selectItem itemValue="product" itemLabel="Weekly Update for New Products" />			
+		</h:selectManyCheckbox>		
+  		<br/><br/>	
+ 		Profile Selection: 				
+		<h:selectOneRadio value="#{model.profileSelect}">
+			<f:selectItem itemValue="public" itemLabel="Public" />
+			<f:selectItem itemValue="private" itemLabel="Private" />
+		</h:selectOneRadio>	
+  		
+  		<br/><br/>
+  		
+  		<h:commandButton value="submit" action="profile_preview"/>
+	</h:form>
+	
+</h:body>
+
+</html>
